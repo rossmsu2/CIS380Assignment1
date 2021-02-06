@@ -34,7 +34,6 @@ std::vector<Game*>* getGames(){
 		bool reRelease;
 		std::istringstream(row[14]) >> std::boolalpha >> reRelease;
 		Game* toAdd = new Game(row[0], handheld, stoi(row[2]), multiPlatform, online, row[5], licensed, row[7], sequel, stoi(row[9]), stod(row[10]), stod(row[11]), row[12], row[13], reRelease, stoi(row[15]));
-		//toAdd = &currentGame;
 		games->push_back(toAdd);
 	}
 	return games;
