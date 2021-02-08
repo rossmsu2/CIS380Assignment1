@@ -11,7 +11,7 @@ std::vector<Game*>* getGames(){
 	fin.open("./data/video_games.csv", std::fstream::in);
 	std::vector<std::string> row;
 	std::string line, word, temp;
-	getline(fin, line);
+	getline(fin, line, '\n');
 
 	while(fin >> temp){
 		row.clear();
@@ -39,7 +39,7 @@ TEST_CASE( "Testing...", "[all]" ) {
     std::vector<Game*> *games = getGames();
     REQUIRE( games->size() == 1114);
     Game* g = games->at(222);
-    REQUIRE( g->getName() == "WWE SmackDown vs. Raw 2007" );
+    REQUIRE( g->getName() == "WWE SmackDown vs. Raw 2007");
     g = games->at(235);
     REQUIRE( g->getName() == "Rockstar Games presents Table Tennis");
     REQUIRE( g->getOnline());
