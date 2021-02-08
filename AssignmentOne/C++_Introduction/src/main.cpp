@@ -13,9 +13,8 @@ std::vector<Game*>* getGames(){
 	std::string line, word, temp;
 	getline(fin, line, '\n');
 
-	while(fin >> temp){
+	while(getline(fin, line, '\n')){
 		row.clear();
-		getline(fin, line, '\n');
 		std::stringstream s(line);
 
 		while(getline(s, word, ',')){
@@ -42,7 +41,7 @@ TEST_CASE( "Testing...", "[all]" ) {
     REQUIRE( g->getName() == "WWE SmackDown vs. Raw 2007");
     g = games->at(235);
     REQUIRE( g->getName() == "Rockstar Games presents Table Tennis");
-    REQUIRE( g->getOnline());
+    REQUIRE( !g->getOnline());
     g = games->at(254);
     REQUIRE( g->getSales() == 0.23 );
     g = games->at(541);
