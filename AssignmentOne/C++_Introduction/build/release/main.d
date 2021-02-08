@@ -1,5 +1,5 @@
-build/release/main.o: src/main.cpp include/catch.hpp src/Game.hpp
+build/release/main.o: src/main.cpp include/catch.hpp include/Game.h
 
 include/catch.hpp:
 
-src/Game.hpp:
+include/Game.h:

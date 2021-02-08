@@ -1,3 +1,3 @@
-build/release/Game.o: src/Game.cpp src/Game.hpp
+build/release/Game.o: src/Game.cpp include/Game.h
 
-src/Game.hpp:
+include/Game.h:

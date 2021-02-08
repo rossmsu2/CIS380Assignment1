@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
-#include "Game.hpp"
+#include "Game.h"
 #include <iostream>
 #include <vector>
 
@@ -8,34 +8,30 @@ std::vector<Game*>* getGames(){
     //COMPLETE ME
 	std::vector<Game*>* games = new std::vector<Game*>;
 	std::fstream fin;
-	fin.open("video_games.csv", std::fstream::in);
+	fin.open("./data/video_games.csv", std::fstream::in);
 	std::vector<std::string> row;
 	std::string line, word, temp;
+	getline(fin, line);
 
 	while(fin >> temp){
 		row.clear();
-		getline(fin, line);
+		getline(fin, line, '\n');
 		std::stringstream s(line);
 
 		while(getline(s, word, ',')){
 			row.push_back(word);
 		}
-
-		bool handheld;
-		std::istringstream(row[1]) >> std::boolalpha >> handheld;
-		bool multiPlatform;
-		std::istringstream(row[3]) >> std::boolalpha >> multiPlatform;
+		std::string title = row[0];
 		bool online;
 		std::istringstream(row[4]) >> std::boolalpha >> online;
-		bool licensed;
-		std::istringstream(row[6]) >> std::boolalpha >> licensed;
-		bool sequel;
-		std::istringstream(row[8]) >> std::boolalpha >> sequel;
-		bool reRelease;
-		std::istringstream(row[14]) >> std::boolalpha >> reRelease;
-		Game* toAdd = new Game(row[0], handheld, stoi(row[2]), multiPlatform, online, row[5], licensed, row[7], sequel, stoi(row[9]), stod(row[10]), stod(row[11]), row[12], row[13], reRelease, stoi(row[15]));
+		double sales = std::stod(row[10]);
+		std::string console = row[12];
+		char rating = row[13][0];
+		int releaseYear = std::stoi(row[15]);
+		Game* toAdd = new Game(title, online, sales, console, rating, releaseYear);
 		games->push_back(toAdd);
 	}
+	fin.close();
 	return games;
 }
 
